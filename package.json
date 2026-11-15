@@ -1,0 +1,11 @@
+{
+  "name": "stormers-mvp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A playable browser slice of Stormers: The Two Ships.",
+  "scripts": {
+    "serve": "npx serve .",
+    "test": "node test/sim.mjs"
+  }
+}

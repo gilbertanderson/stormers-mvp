@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stormers — The Two Ships</title>
+  <meta name="description" content="A playable slice of Stormers: plan your boarding party's paths, then watch the plan run." />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <canvas id="view"></canvas>
+
+  <header id="topbar">
+    <div class="brand">
+      <h1>STORMERS<span>The Two Ships</span></h1>
+      <p id="objective"></p>
+    </div>
+    <div id="phase" class="phase plan">PLANNING</div>
+  </header>
+
+  <aside id="crew"><h2 id="crewTitle">Pirates</h2><ul id="crewList"></ul></aside>
+
+  <footer id="help">
+    <span><b>Click a raider</b>, then deck to plot</span>
+    <span><b>Right-click</b> step back</span>
+    <span><b>H</b> hold at waypoint</span>
+    <span><b>Space</b> run / pause</span>
+    <span><b>F</b> reveal</span>
+    <span><b>R</b> restart</span>
+    <span><b>WASD / drag</b> pan · <b>Wheel</b> zoom</span>
+  </footer>
+
+  <div id="overlay" class="hidden">
+    <h2 id="outcomeText"></h2>
+    <div id="stars"></div>
+    <p id="outcomeHint">Press <kbd>R</kbd> to replay</p>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

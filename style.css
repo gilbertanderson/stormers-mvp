@@ -1,0 +1,186 @@
+:root {
+  --ink: #eaf2f8;
+  --dim: #8fa6b8;
+  --deck: #a8804f;
+  --hatch: #e6ad3d;
+  --squad: #6fe8c4;
+  --hostile: #ff7a6b;
+  --panel: rgba(6, 20, 32, 0.72);
+  --edge: rgba(146, 190, 214, 0.22);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #071722;
+  color: var(--ink);
+  font: 14px/1.45 "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#view {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+#topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 20px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(4, 14, 22, 0.82), rgba(4, 14, 22, 0));
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.22em;
+  font-weight: 600;
+  font-family: "Optima", "Gill Sans", "Trebuchet MS", sans-serif;
+  text-transform: uppercase;
+}
+
+.brand h1 span {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  letter-spacing: 0.34em;
+  color: var(--hatch);
+  text-transform: uppercase;
+}
+
+#objective {
+  margin: 10px 0 0;
+  max-width: 46ch;
+  color: var(--dim);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.phase {
+  flex: 0 0 auto;
+  padding: 7px 14px;
+  border: 1px solid var(--edge);
+  border-radius: 2px;
+  font-family: "Optima", "Gill Sans", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  background: var(--panel);
+}
+
+.phase.plan { color: var(--hatch); border-color: rgba(230, 173, 61, 0.5); }
+.phase.run { color: var(--squad); border-color: rgba(111, 232, 196, 0.55); }
+.phase.over { color: var(--hostile); border-color: rgba(255, 122, 107, 0.55); }
+
+#crew {
+  position: fixed;
+  left: 20px;
+  bottom: 62px;
+  width: 214px;
+  padding: 12px 14px;
+  background: var(--panel);
+  border: 1px solid var(--edge);
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+#crew h2 {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--squad);
+  text-transform: uppercase;
+  font-family: "Optima", "Gill Sans", sans-serif;
+}
+
+#crew ul { margin: 0; padding: 0; list-style: none; }
+
+#crew li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 3px 6px;
+  border-left: 2px solid transparent;
+  font-size: 13px;
+}
+
+#crew li.selected {
+  border-left-color: var(--hatch);
+  background: rgba(230, 173, 61, 0.1);
+}
+
+#crew li.dead { opacity: 0.32; text-decoration: line-through; }
+
+#crew .role { color: var(--dim); font-size: 11px; letter-spacing: 0.08em; }
+#crew .carry { color: var(--hatch); font-size: 11px; }
+
+#crew .pips { letter-spacing: 1px; color: var(--squad); }
+
+#help {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 10px 20px;
+  font-family: "Optima", "Gill Sans", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--dim);
+  background: linear-gradient(0deg, rgba(4, 14, 22, 0.85), rgba(4, 14, 22, 0));
+  pointer-events: none;
+}
+
+#help b { color: var(--ink); font-weight: 600; }
+
+#overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(3, 10, 16, 0.62);
+  pointer-events: none;
+  animation: fade 320ms ease-out;
+}
+
+#overlay.hidden { display: none; }
+
+#overlay h2 {
+  margin: 0;
+  font-size: 46px;
+  letter-spacing: 0.24em;
+  font-family: "Optima", "Gill Sans", sans-serif;
+  text-shadow: 0 4px 26px rgba(0, 0, 0, 0.7);
+}
+
+#overlay.win h2 { color: var(--squad); }
+#overlay.lose h2 { color: var(--hostile); }
+
+#stars { font-size: 28px; letter-spacing: 10px; color: var(--hatch); }
+
+#outcomeHint { margin: 0; color: var(--dim); font-size: 13px; letter-spacing: 0.08em; }
+
+kbd {
+  padding: 1px 6px;
+  border: 1px solid var(--edge);
+  border-radius: 2px;
+  font-family: "Optima", "Gill Sans", sans-serif;
+  font-size: 11px;
+}
+
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
