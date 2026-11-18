@@ -8,7 +8,12 @@ This is a browser build of the *The Two Ships* mission from the Unity prototype
 spawns and the same class numbers, re-implemented in plain JavaScript on three.js so the
 mission can be played without a download.
 
-Play it: **https://gilbertanderson.github.io/stormers-mvp/**
+There are two playable builds of *The Two Ships*, side by side:
+
+| Build | What it is | Play |
+| --- | --- | --- |
+| three.js build (this repo's root) | The full 44 × 22 deck of both hulls, fog of war and chest runs — the slice described below. | **https://gilbertanderson.github.io/stormers-mvp/** |
+| Canvas 2D build (`two-ships-2d/`) | A smaller 28 × 17 deck built to try the messier half of the mission: pry, axe, powder keg and smoke, breaches instead of planks only, and both crews raiding. Plain Canvas 2D, no three.js, no dependencies. | **https://gilbertanderson.github.io/stormers-mvp/two-ships-2d/** |
 
 ## Play it locally
 
