@@ -70,6 +70,10 @@ html, body {
 
 .phase {
   flex: 0 0 auto;
+  pointer-events: auto;
+  cursor: pointer;
+  color: inherit;
+  min-height: 36px;
   padding: 7px 14px;
   border: 1px solid var(--edge);
   border-radius: 2px;
@@ -92,7 +96,6 @@ html, body {
   background: var(--panel);
   border: 1px solid var(--edge);
   border-radius: 3px;
-  pointer-events: none;
 }
 
 #crew h2 {
@@ -106,15 +109,25 @@ html, body {
 
 #crew ul { margin: 0; padding: 0; list-style: none; }
 
-#crew li {
+#crew li { border-left: 2px solid transparent; }
+
+#crew li button {
+  width: 100%;
+  min-height: 32px;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 8px;
-  padding: 3px 6px;
-  border-left: 2px solid transparent;
+  padding: 5px 6px;
+  border: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
   font-size: 13px;
+  text-align: left;
+  cursor: pointer;
 }
+#crew li button:disabled { cursor: default; color: inherit; }
 
 #crew li.selected {
   border-left-color: var(--hatch);
@@ -127,6 +140,55 @@ html, body {
 #crew .carry { color: var(--hatch); font-size: 11px; }
 
 #crew .pips { letter-spacing: 1px; color: var(--squad); }
+
+/* On-screen controls: the same actions as the keyboard shortcuts, for touch and mouse */
+#controls {
+  position: fixed;
+  right: 20px;
+  bottom: 52px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+  max-width: min(560px, calc(100% - 270px));
+}
+
+#controls button, .inline {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--edge);
+  border-radius: 3px;
+  background: var(--panel);
+  color: var(--ink);
+  font-family: "Optima", "Gill Sans", "Trebuchet MS", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+#controls button:hover { border-color: rgba(230, 173, 61, 0.6); }
+#controls button[aria-pressed="true"] { border-color: var(--hatch); color: var(--hatch); }
+#controls button:disabled { opacity: 0.45; cursor: default; }
+#controls #runBtn { border-color: rgba(230, 173, 61, 0.6); color: var(--hatch); }
+#controls kbd { margin-left: 6px; color: var(--dim); }
+.inline { min-height: 32px; padding: 3px 10px; pointer-events: auto; }
+
+button:focus-visible { outline: 3px solid #8ab4ff; outline-offset: 2px; }
+
+#message {
+  margin: 8px 0 0;
+  min-height: 1.4em;
+  max-width: 46ch;
+  color: var(--ink);
+  font-size: 13px;
+}
+
+/* Show the hints for the input in use */
+.for-touch { display: none; }
+@media (pointer: coarse) {
+  .for-mouse { display: none; }
+  .for-touch { display: inline; }
+  #controls kbd { display: none; }
+}
 
 #help {
   position: fixed;
@@ -146,6 +208,7 @@ html, body {
 #help b { color: var(--ink); font-weight: 600; }
 
 #overlay {
+  z-index: 2;
   position: fixed;
   inset: 0;
   display: flex;
@@ -184,3 +247,26 @@ kbd {
 }
 
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* Phones and narrow windows: stack the HUD so nothing overlaps or runs off screen */
+@media (max-width: 760px) {
+  #topbar { flex-direction: column; gap: 8px; padding: 12px 14px; }
+  .brand h1 { font-size: 18px; }
+  #objective { font-size: 12px; margin-top: 6px; }
+  .phase { align-self: stretch; text-align: center; letter-spacing: 0.18em; }
+  #crew {
+    left: 10px; right: 10px; width: auto;
+    bottom: calc(112px + env(safe-area-inset-bottom));
+    padding: 8px 10px;
+  }
+  #crew ul { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 8px; }
+  #crew li button { min-height: 40px; }
+  #controls {
+    left: 10px; right: 10px; max-width: none;
+    bottom: calc(34px + env(safe-area-inset-bottom));
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+  }
+  #controls button { padding: 6px 4px; font-size: 12px; min-height: 36px; }
+  #help { padding: 6px 12px calc(6px + env(safe-area-inset-bottom)); font-size: 10px; letter-spacing: 0.06em; }
+  #overlay h2 { font-size: 30px; text-align: center; }
+}

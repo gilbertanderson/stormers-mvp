@@ -2,39 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <!-- GitHub Pages can't send headers, so the policy ships as a meta tag. Everything is served from this site. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'" />
   <title>Stormers — The Two Ships</title>
   <meta name="description" content="A playable slice of Stormers: plan your boarding party's paths, then watch the plan run." />
   <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <canvas id="view"></canvas>
+  <canvas id="view" aria-label="The two ships, seen from above. Tap or click a raider, then the deck to plot their path." role="img"></canvas>
 
   <header id="topbar">
     <div class="brand">
       <h1>STORMERS<span>The Two Ships</span></h1>
       <p id="objective"></p>
+      <p id="message" role="status" aria-live="polite"></p>
     </div>
-    <div id="phase" class="phase plan">PLANNING</div>
+    <button type="button" id="phase" class="phase plan">PLANNING — RUN</button>
   </header>
 
-  <aside id="crew"><h2 id="crewTitle">Pirates</h2><ul id="crewList"></ul></aside>
+  <aside id="crew" aria-labelledby="crewTitle">
+    <h2 id="crewTitle">Pirates</h2>
+    <ul id="crewList"></ul>
+  </aside>
+
+  <nav id="controls" aria-label="Game controls">
+    <button type="button" data-action="run" id="runBtn">Run <kbd>Space</kbd></button>
+    <button type="button" data-action="back">Step back <kbd>⌫</kbd></button>
+    <button type="button" data-action="hold">Hold <kbd>H</kbd></button>
+    <button type="button" data-action="next">Next raider <kbd>N</kbd></button>
+    <button type="button" data-action="reveal" aria-pressed="false">Reveal <kbd>F</kbd></button>
+    <button type="button" data-action="restart">Restart <kbd>R</kbd></button>
+  </nav>
 
   <footer id="help">
-    <span><b>Click a raider</b>, then deck to plot</span>
-    <span><b>Right-click</b> step back</span>
-    <span><b>H</b> hold at waypoint</span>
-    <span><b>Space</b> run / pause</span>
-    <span><b>F</b> reveal</span>
-    <span><b>R</b> restart</span>
-    <span><b>WASD / drag</b> pan · <b>Wheel</b> zoom</span>
+    <span class="for-mouse"><b>Click a raider</b>, then the deck to plot · <b>Right-click</b> step back · <b>WASD / middle-drag</b> pan · <b>Wheel</b> zoom</span>
+    <span class="for-touch"><b>Tap a raider</b>, then the deck to plot · <b>Drag</b> to pan · <b>Pinch</b> to zoom</span>
   </footer>
 
   <div id="overlay" class="hidden">
     <h2 id="outcomeText"></h2>
     <div id="stars"></div>
-    <p id="outcomeHint">Press <kbd>R</kbd> to replay</p>
+    <p id="outcomeHint">Press <kbd>R</kbd> or <button type="button" data-action="restart" class="inline">Replay</button></p>
   </div>
 
   <script type="module" src="./src/main.js"></script>

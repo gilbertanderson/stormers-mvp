@@ -59,19 +59,24 @@ else is one.
 
 ### Controls
 
-| Input | Action |
-| --- | --- |
-| Click a raider, then deck | Select, then plot a waypoint |
-| Right-click | Step the current plan back |
-| `H` | Hold at the last waypoint instead of pushing on |
-| `Space` | Run the plan / pause back to planning |
-| `F` | Reveal the whole deck |
-| `R` | Restart the mission |
-| `WASD` or drag | Pan |
-| Wheel | Zoom |
-| `Tab` | Cycle raiders |
-| `Backspace` | Clear the current plan |
-| `Esc` | Deselect |
+Every action has an on-screen button as well as a key, so the slice plays with a mouse, a
+keyboard, or touch alone.
+
+| Mouse | Touch | Key | Action |
+| --- | --- | --- | --- |
+| Click a raider, then deck | Tap a raider, then deck | | Select, then plot a waypoint |
+| Click a crew name | Tap a crew name | `N` | Select / cycle raiders |
+| Right-click or **Step back** | **Step back** | `Backspace` | Step the current plan back |
+| **Hold** | **Hold** | `H` | Hold at the last waypoint instead of pushing on |
+| **Run** or the phase banner | **Run** or the phase banner | `Space` | Run the plan / pause back to planning |
+| **Reveal** | **Reveal** | `F` | Reveal the whole deck |
+| **Restart** | **Restart** | `R` | Restart the mission |
+| Middle-drag | One-finger drag | `WASD` | Pan |
+| Wheel | Pinch | | Zoom |
+| | | `Esc` | Clear the current plan |
+
+`Tab` moves between the on-screen controls like any page. Game messages (who is down, who
+has the chest) show under the objective and are read out by screen readers.
 
 ## What is and is not in the slice
 
@@ -93,7 +98,6 @@ Not implemented, and deliberately so — these exist in the Unity prototype and 
 - The Viking crew defends. It does not raid: it does not plan, does not push across a plank,
   and does not go for your chest.
 - Anything persistent: no saves, no progression, no unlocks.
-- Touch input. This is a mouse-and-keyboard slice.
 
 ### One warning
 
@@ -122,7 +126,7 @@ ASCII rows in the same shape as the C# level data for exactly that reason.
 | `src/map.js` | Deck plan, palette, class table, spawns, map parsing (walkability, sight, surfaces) |
 | `src/game.js` | Rules: BFS routing, planning, running, vision, combat, chests, scoring |
 | `src/view.js` | three.js scene, camera and input geometry — instanced deck, planks, fog, paths, noise, tracers |
-| `src/main.js` | DOM HUD, keyboard and mouse, and the frame loop; exposes `window.stormers` for poking at a live game |
+| `src/main.js` | DOM HUD and controls, keyboard, mouse and touch input, and the frame loop; exposes `window.stormers` for poking at a live game |
 | `test/sim.mjs` | Headless rules test that drives `game.js` with no renderer |
 
 `vendor/three/` holds three.js r171 (module build). Nothing else is vendored and there is no

@@ -795,3 +795,6 @@ canvas#board {
     font-size: 10.5px;
   }
 }
+
+/* The side panel scrolls, so it takes keyboard focus; show where focus is */
+#side:focus-visible { outline: 3px solid #8ab4ff; outline-offset: 2px; }

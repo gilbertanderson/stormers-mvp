@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- GitHub Pages can't send headers, so the policy ships as a meta tag. Everything is served from this site. -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
   <title>The Two Ships</title>
   <link rel="stylesheet" href="./src/style.css">
 </head>
@@ -14,7 +16,7 @@
         <canvas id="board"></canvas>
         <div id="overlay" class="hidden"></div>
       </div>
-      <aside id="side"></aside>
+      <aside id="side" tabindex="0" aria-label="Selected raider and crew"></aside>
     </main>
     <footer id="bottom"></footer>
   </div>
